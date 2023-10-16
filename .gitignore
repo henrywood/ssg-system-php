@@ -2,5 +2,7 @@ vendor
 .idea
 .vscode
 tmp/*.md
+tmp/*.json
+tmp/*.php
 .DS_Store
 .phpunit*
