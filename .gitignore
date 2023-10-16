@@ -1,0 +1,6 @@
+vendor
+.idea
+.vscode
+tmp/*.md
+.DS_Store
+.phpunit*

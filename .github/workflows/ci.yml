@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache Composer packages
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            composer-
+
+      - name: Install dependencies
+        run: composer update --prefer-dist --no-progress --no-suggest
+
+      - name: chmod 777 tmp
+        run: chmod 777 tmp
+
+      - name: Run tests
+        run: vendor/bin/phpunit
