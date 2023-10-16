@@ -78,12 +78,10 @@ class AtasSsg
      */
     function getCurrentHostname(): string
     {
-        global $config;
-
         // Check if HTTPS or HTTP is being used
         $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? "https" : "http";
 
-        $host = $this->isBuildRunning() ? $config->prod_hostname : $_SERVER['HTTP_HOST'] ?? "localhost";
+        $host = $this->isBuildRunning() ? $this->config->prod_hostname : $_SERVER['HTTP_HOST'] ?? "localhost";
         $port = $_SERVER['SERVER_PORT'] ?? "80";
 
         // Depending on whether the port is standard for the protocol, include it in the URL
